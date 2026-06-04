@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login - GR
+{% endblock %}
+
+{% block content %}
+<div class="flex justify-center py-12">
+    <div class="w-full max-w-md bg-gradient-to-r from-[#141420] to-[#16163B] rounded-2xl border border-purple-500 shadow-lg p-8">
+
+        <h1 class="text-3xl font-bold text-center text-purple-600 mb-8">
+            Entrar
+        </h1>
+
+        <form method="POST" 
+              action="{{ url_for('route.login') }}"
+              class="space-y-5 text-white">
+
+            <input
+                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                name="senha"
+                type="password"
+                placeholder="Senha"
+                required
+            >
+
+            <button
+                type="submit"
+                class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition cursor-pointer"
+            >
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-400">
+                Não possui uma conta?
+            </p>
+
+            <a
+                href="/sign_in"
+                class="text-purple-600 hover:text-purple-800 font-medium"
+            >
+                Criar conta
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

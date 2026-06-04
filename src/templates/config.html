@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Configurações - GR
+{% endblock %}
+
+{% block content %}
+<div class="flex justify-center py-12">
+    <div class="w-full max-w-3xl bg-gradient-to-r from-[#141420] to-[#16163B] rounded-2xl border border-purple-500 shadow-lg p-8">
+
+        <h1 class="text-3xl font-bold text-center text-purple-600 mb-8">
+            Minha Conta
+        </h1>
+
+        <div class="bg-gradient-to-r from-[#141420] to-[#16163B] border border-purple-500 rounded-xl p-6">
+            <h2 class="text-xl text-white font-semibold mb-4">
+                Informações da Conta
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-300 text-sm">Nome</p>
+                    <p class="font-medium text-purple-500">{{ session["nome"] }}</p>
+                </div>
+
+                <div>
+                    <p class="text-gray-300 text-sm">Sobrenome</p>
+                    <p class="font-medium text-purple-500">{{ session["sobrenome"] }}</p>
+                </div>
+
+                <div>
+                    <p class="text-gray-300 text-sm">Email</p>
+                    <p class="font-medium text-purple-500">{{ session["email"] }}</p>
+                </div>
+
+                <div>
+                    <p class="text-gray-300 text-sm">Senha</p>
+                    <p class="font-medium text-purple-500">••••••••</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 grid gap-4">
+
+            <a
+                href="/update"
+                class="text-center bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition"
+            >
+                Alterar Dados
+            </a>
+
+            <a
+                href="/logout"
+                class="text-center bg-gray-200 hover:bg-gray-300 py-3 rounded-lg font-medium transition"
+            >
+                Desconectar da Conta
+            </a>
+
+            <a
+                href="/deletar_conta"
+                class="text-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-medium transition"
+            >
+                Deletar Conta
+            </a>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Comparar - GR
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-[#0A0A0F] via-[#101018] to-[#141420] text-white">
+
+    <div class="max-w-6xl mx-auto px-12 py-12">
+
+        <div class="flex items-center gap-4 mb-12">
+
+            <span class="text-zinc-300">
+                Category
+            </span>
+
+            <select class="bg-[#17172A] px-6 py-3 rounded-full outline-none cursor-pointer">
+                <option>Mouse</option>
+                <option>Teclado</option>
+                <option>Headset</option>
+                <option>Microfone</option>
+            </select>
+
+        </div>
+
+        <div class="grid grid-cols-[1fr_auto_1fr] gap-10 items-start">
+
+            <div>
+
+                <input
+                    type="text"
+                    value="Shark X11"
+                    class="w-full bg-white text-black rounded-md text-center py-1 mb-4"
+                >
+
+                <div class="bg-[#151528] rounded-3xl p-10 shadow-xl">
+
+                    <div class="space-y-6 text-zinc-300">
+
+                        <p>Weight: 83g ±3g</p>
+
+                        <p>Battery: 300H</p>
+
+                        <p>Durability: 20.000.000 clicks</p>
+
+                        <p>DPI: 800-22000</p>
+
+                        <p>Move Speed: 400IPS</p>
+
+                        <p>Connection: Wire/2.4G/BT5.2</p>
+
+                        <p>Size: 128×64×40mm</p>
+
+                        <p>Polling rate: 125-1000Hz</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="flex justify-center pt-2">
+
+                <button
+                    class="text-zinc-400 hover:text-purple-400 transition"
+                >
+                    <i class="bi bi-arrow-left-right text-xl"></i>
+                </button>
+
+            </div>
+
+            <div>
+
+                <input
+                    type="text"
+                    value="Shark X6"
+                    class="w-full bg-white text-black rounded-md text-center py-1 mb-4"
+                >
+
+                <div class="bg-[#151528] rounded-3xl p-10 shadow-xl">
+
+                    <div class="space-y-6 text-zinc-300">
+
+                        <p>Weight: 49g ±3g</p>
+
+                        <p>Battery: 200H</p>
+
+                        <p>Durability: 80.000.000 clicks</p>
+
+                        <p>DPI: 800-26000</p>
+
+                        <p>Move Speed: 650IPS</p>
+
+                        <p>Connection: Wire/2.4G/BT5.2</p>
+
+                        <p>Size: 118.3×62×37.3mm</p>
+
+                        <p>Polling rate: 125-1000Hz</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
