@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 import pymysql
+
+load_dotenv()
 
 def conectar():
     return pymysql.connect(
-        host="localhost",
-        port=3306,
-        user="root",
-        password="fatec",
-        database="gear_rate"
+        host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT")),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
     )

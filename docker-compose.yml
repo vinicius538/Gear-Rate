@@ -1,0 +1,40 @@
+services:
+
+  web:
+
+    build: .
+
+    container_name: dolce_flask_app
+
+    restart: always
+    
+    ports:
+      - "5000:5000"
+
+    environment:
+      - DB_HOST=db
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - SECRET_KEY=${SECRET_KEY}
+
+    depends_on:
+
+      - db
+
+    volumes:
+      mysql_data:
+
+  db:
+    image: mysql:8.0
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+    - mysql_data:/var/lib/mysql
+

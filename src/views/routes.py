@@ -1,5 +1,6 @@
 from flask import render_template,Blueprint,request,redirect,url_for,session
 from database import conectar
+import pymysql
 
 route_bp = Blueprint("route",__name__)
 
@@ -11,7 +12,22 @@ def home():
 
 @route_bp.route("/perifericos")
 def perifericos():
-    return render_template("periphals.html")
+    conn = conectar()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    cursor.execute("""
+    select p.per_nome,p.per_marca,p.per_imagem,r.rev_rate
+    from peripherals p
+    left join reviews r
+    on p.per_id = r.per_id
+    """)
+    
+    produtos=cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render_template("periphals.html",produtos=produtos)
 
 @route_bp.route("/sign_in", methods=["POST"])
 def signin():
@@ -82,7 +98,22 @@ def login_page():
 
 @route_bp.route("/ranking")
 def ranking():
-    return render_template("ranking.html")
+    conn = conectar()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    cursor.execute("""
+    select p.per_nome,p.per_marca,p.per_imagem,r.rev_rate
+    from peripherals p
+    left join reviews r
+    on p.per_id = r.per_id
+    """)
+    
+    produtos=cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    
+    return render_template("ranking.html",produtos=produtos)
 
 @route_bp.route("/periferico")
 def periferico():

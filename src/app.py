@@ -8,4 +8,4 @@ app.secret_key = "1234567890qwertyuiopasdfghjklçzxcvbnm"
 app.register_blueprint(route_bp)
 
 if __name__ =="__main__":
-    app.run(debug=True)
+    app.run(debug=True ,host="0.0.0.0", port=5000)
