@@ -38,7 +38,7 @@ Gear-Rate/
 ## Como Acessar o Site
 
 ### Pré-requisitos:
-Ter o <a src="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> Instalado
+Ter o [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado
 
 
 ### Passo a Passo
