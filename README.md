@@ -36,7 +36,7 @@ Gear-Rate/
 ```
 ---
 
-## Como Acessar o Site
+## 🚀 Como Acessar o Site
 
 ### Pré-requisitos:
 Ter o [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado
@@ -53,7 +53,7 @@ docker compose up --build
 ```
 ---
 
-## Telas
+##  💻 Telas
 <img width="1920" height="917" alt="home gear rate" src="https://github.com/user-attachments/assets/d5bf95f6-14c1-4ec8-a18f-f08c50b8e858" />
 <img width="1920" height="917" alt="login gear rate" src="https://github.com/user-attachments/assets/b93dcfff-1927-45da-b98f-6f3384083e02" />
 <img width="1920" height="917" alt="criar conta gear rate" src="https://github.com/user-attachments/assets/ebc194b0-1b9a-42c0-a2ba-85bb57591fba" />
