@@ -1,13 +1,10 @@
 services:
 
   web:
-
     build: .
-
     container_name: dolce_flask_app
-
     restart: always
-    
+
     ports:
       - "5000:5000"
 
@@ -19,22 +16,23 @@ services:
       - SECRET_KEY=${SECRET_KEY}
 
     depends_on:
-
       - db
 
     volumes:
-      mysql_data:
+      - .:/app
 
   db:
-    image: mysql:8.0
+    image: mariadb:11
 
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
 
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
     volumes:
-    - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
 
+volumes:
+  mysql_data:
