@@ -34,3 +34,19 @@ Gear-Rate/
 └── requirements.txt           # Lista de dependências do Python
 
 ```
+
+## Como Acessar o Site
+
+### Pré-requisitos:
+Ter o <a src="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> Instalado
+
+
+### Passo a Passo
+
+```text
+git clone https://github.com/vinicius538/Gear-Rate.git
+
+cd Gear-Rate
+
+docker compose up --build
+```
