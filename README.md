@@ -34,6 +34,7 @@ Gear-Rate/
 └── requirements.txt           # Lista de dependências do Python
 
 ```
+---
 
 ## Como Acessar o Site
 
@@ -50,3 +51,20 @@ cd Gear-Rate
 
 docker compose up --build
 ```
+---
+
+## Telas
+<img width="1920" height="917" alt="home gear rate" src="https://github.com/user-attachments/assets/d5bf95f6-14c1-4ec8-a18f-f08c50b8e858" />
+<img width="1920" height="917" alt="login gear rate" src="https://github.com/user-attachments/assets/b93dcfff-1927-45da-b98f-6f3384083e02" />
+<img width="1920" height="917" alt="criar conta gear rate" src="https://github.com/user-attachments/assets/ebc194b0-1b9a-42c0-a2ba-85bb57591fba" />
+<img width="1920" height="917" alt="ver dados gear rate" src="https://github.com/user-attachments/assets/48fa0360-986a-460d-ac66-6d19568368a3" />
+<img width="1920" height="917" alt="alterar dados gear rate" src="https://github.com/user-attachments/assets/10da0127-30b9-4ad5-b10b-6d589fc67703" />
+<img width="1920" height="917" alt="perifericos gear rate" src="https://github.com/user-attachments/assets/fbc7211b-9e48-4cae-9acf-ac4965add9d4" />
+<img width="1920" height="917" alt="comparação gear rate" src="https://github.com/user-attachments/assets/36806438-c065-4731-a95b-78dfab9e2312" />
+<img width="1920" height="917" alt="ranking gear rate" src="https://github.com/user-attachments/assets/2494c103-fa30-4b08-b82f-db0f855b2516" />
+
+
+
+
+
+
