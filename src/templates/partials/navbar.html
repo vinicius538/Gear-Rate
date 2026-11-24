@@ -1,78 +1,23 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="{{ url_for('static', filename='img/gr_nav.png') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>
-    </title>
-</head>
-
-<body>
-    <div>
-        
-        <nav class="relative bg-zinc-950 px-6 py-2 flex items-center justify-between">
-
-            <a href="/">
-                <img class="w-16 h-16 object-contain" src="{{ url_for('static', filename='img/gr_nav.png') }}">
-            </a>
-
-            <form
-                class="absolute left-1/2 -translate-x-1/2 flex items-center"
-                role="search"
-            >
-                <button
-                    class="px-4 py-2 bg-purple-500 text-white rounded-l-lg hover:bg-purple-600 cursor-pointer"
-                    type="submit"
-                >
-                    <i class="bi bi-search"></i>
-                </button>
-            
-                <input
-                    class="w-96 px-3 py-2 rounded-r-lg bg-white text-black focus:outline-none"
-                    type="search"
-                    placeholder="Pesquisar"
-                >
-            </form>
-        
-            <div class="flex items-center gap-2">
-                <h5 class="text-white mr-2 text-lg font-medium">
-                    {% if session.get("nome") %}
-                        Olá, {{ session["nome"] }}
-                    {% else %}
-                        Faça login
-                    {% endif %}
-
-                </h5>
-
-                {% if session.get("nome") %}
-                    <a href="/config">
-                        <i class="bi bi-person-circle text-white text-4xl"></i>
-                    </a>
-                {% else %}
-                    <a href="/login">
-                        <i class="bi bi-person-circle text-white text-4xl"></i>
-                    </a>
-                {% endif %}
-            </div>
-        
-        </nav>
-
-        <div class="bg-purple-600 text-white text-center py-2">
-            <a class="mr-20 px-4 py-2 cursor-pointer bg-purple-800 hover:bg-purple-900" href="/perifericos">
-                Periféricos
-            </a>
-        
-            <a class="mr-20 px-4 py-2 cursor-pointer bg-purple-800 hover:bg-purple-900" href="/comparacao">
-                Comparação
-            </a>
-        
-            <a class="px-4 py-2 cursor-pointer bg-purple-800 hover:bg-purple-900" href="/ranking">
-                Ranking
-            </a>
-        </div>
+<header class="site-header">
+    <div class="header-main">
+        <a class="brand" href="/" aria-label="Gear Rate, página inicial">
+            <img src="{{ url_for('static', filename='img/gr_nav.png') }}" alt="">
+            <span>GEAR</span>RATE
+        </a>
+        <form class="search" role="search" action="/perifericos" method="GET">
+            <button type="submit" aria-label="Pesquisar"><i class="bi bi-search"></i></button>
+            <input type="search" name="q" placeholder="Busque por produto ou categoria" aria-label="Buscar periféricos">
+        </form>
+        <a class="account-link" href="{{ '/config' if session.get('nome') else '/login' }}">
+            <span>{{ 'Olá, ' ~ session['nome'] if session.get('nome') else 'Entrar na conta' }}</span>
+            <span class="account-icon"><i class="bi bi-person"></i></span>
+        </a>
     </div>
-</body>
-</html>
+    <div class="nav-row">
+        <nav class="nav-links" aria-label="Navegação principal">
+            <a href="/perifericos"><i class="bi bi-grid-3x3-gap mr-2"></i>Periféricos</a>
+            <a href="/comparacao"><i class="bi bi-arrow-left-right mr-2"></i>Comparar</a>
+            <a href="/ranking"><i class="bi bi-trophy mr-2"></i>Ranking</a>
+        </nav>
+    </div>
+</header>

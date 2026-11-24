@@ -1,58 +1,15 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Login - GR
-{% endblock %}
-
+{% block title %}Entrar — Gear Rate{% endblock %}
 {% block content %}
-<div class="flex justify-center py-12">
-    <div class="w-full max-w-md bg-gradient-to-r from-[#141420] to-[#16163B] rounded-2xl border border-purple-500 shadow-lg p-8">
-
-        <h1 class="text-3xl font-bold text-center text-purple-600 mb-8">
-            Entrar
-        </h1>
-
-        <form method="POST" 
-              action="{{ url_for('route.login') }}"
-              class="space-y-5 text-white">
-
-            <input
-                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                name="email"
-                type="email"
-                placeholder="Email"
-                required
-            >
-
-            <input
-                class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                name="senha"
-                type="password"
-                placeholder="Senha"
-                required
-            >
-
-            <button
-                type="submit"
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition cursor-pointer"
-            >
-                Entrar
-            </button>
+<main class="auth-layout">
+    <aside class="auth-aside hidden md:block"><p class="eyebrow">Sua comunidade de gear</p><h1 class="page-title mt-5" style="font-size:52px">Escolha melhor.<br><span style="color:var(--accent-bright)">Jogue do seu jeito.</span></h1><p class="page-lede mt-5">Acesse sua conta para acompanhar seus periféricos favoritos e compartilhar suas avaliações.</p><div class="mt-12 flex items-center gap-3 text-sm text-zinc-300"><span class="account-icon"><i class="bi bi-stars"></i></span> Reviews, comparações e recomendações em um só lugar.</div></aside>
+    <section class="auth-card"><p class="eyebrow">Bem-vindo de volta</p><h2 class="text-3xl font-bold mt-2 mb-2">Entrar</h2><p class="text-sm text-zinc-400 mb-7">Use seu email e senha para acessar sua conta.</p>
+        <form method="POST" action="{{ url_for('route.login') }}" class="space-y-4">
+            <label class="block text-sm text-zinc-300">Email<input class="mt-2" name="email" type="email" placeholder="voce@email.com" required></label>
+            <label class="block text-sm text-zinc-300">Senha<input class="mt-2" name="senha" type="password" placeholder="Sua senha" required></label>
+            <button type="submit" class="btn-primary w-full mt-2">Entrar na conta <i class="bi bi-arrow-right"></i></button>
         </form>
-
-        <div class="mt-6 text-center">
-            <p class="text-gray-400">
-                Não possui uma conta?
-            </p>
-
-            <a
-                href="/sign_in"
-                class="text-purple-600 hover:text-purple-800 font-medium"
-            >
-                Criar conta
-            </a>
-        </div>
-
-    </div>
-</div>
+        <p class="text-center text-sm text-zinc-400 mt-6">Ainda não tem uma conta? <a href="/sign_in" class="font-semibold" style="color:var(--accent-bright)">Criar conta</a></p>
+    </section>
+</main>
 {% endblock %}

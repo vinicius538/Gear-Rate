@@ -1,39 +1,27 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Periféricos - GR
-{% endblock %}
-
+{% block title %}Periféricos — Gear Rate{% endblock %}
 {% block content %}
-<section class="max-w-6xl mx-auto px-8 pb-20 ">
-
-    <div class="grid grid-cols-1 mt-7 md:grid-cols-4 gap-8">
+<main class="page-shell">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-8">
+        <div><p class="eyebrow">Catálogo</p><h1 class="page-title">Encontre seu próximo upgrade</h1><p class="page-lede">Explore periféricos avaliados pela comunidade e compare o que importa.</p></div>
+        <span class="text-sm text-zinc-400"><i class="bi bi-box-seam mr-2"></i>{{ produtos|length }} produtos</span>
+    </div>
+    {% if produtos %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for produto in produtos %}
-        <a href="">
-        <div class="bg-[#11111A] rounded-xl p-4 shadow-lg border border-zinc-800">
-
-            <img
-                src="{{ produto['per_imagem'] }}"
-                class="w-full h-48 object-contain bg-white rounded-lg"
-            >
-
-            <h3 class="text-white text-center mt-4">
-                {{ produto['per_nome'] }}
-            </h3>
-
-            <div class="flex justify-between mt-4">
-                <span class="text-purple-400">
-                    ★★★★★
-                </span>
-
-                <span class="text-purple-400">
-                    {{ produto['rev_rate'] }}
-                </span>
-            </div>
-
-        </div>
-        </a>
-    {% endfor %}
-
-</section>
+        <article class="product-card">
+            {% if produto['per_imagem'] %}
+            <img src="{{ produto['per_imagem'] }}" alt="{{ produto['per_nome'] }}" class="w-full h-48 object-contain p-3">
+            {% else %}
+            {% set category_icon = 'bi-headset' if produto['per_categoria'] == 'Headset' else 'bi-mouse' if produto['per_categoria'] == 'Mouse' else 'bi-keyboard' if produto['per_categoria'] == 'Teclado' else 'bi-mic' %}
+            <div class="w-full h-48 grid place-items-center rounded-xl bg-gradient-to-br from-violet-950/60 to-[#13101a] text-violet-300"><i class="bi {{ category_icon }} text-6xl"></i></div>
+            {% endif %}
+            <div class="pt-3"><p class="text-xs uppercase tracking-wider text-zinc-500">{{ produto['per_categoria'] or 'Periférico' }} · {{ produto['per_marca'] }}</p><h2 class="font-semibold mt-1">{{ produto['per_nome'] }}</h2><div class="flex justify-between items-center mt-4"><span class="{{ 'rating' if produto['rev_rate'] is not none else 'text-zinc-700' }}">★★★★★</span>{% if produto['rev_rate'] is not none %}<span class="text-sm font-semibold">{{ produto['rev_rate'] }} <span class="text-zinc-500 font-normal">/ 10</span></span>{% else %}<span class="text-xs text-zinc-500">Sem avaliações</span>{% endif %}</div></div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="rounded-2xl border border-white/10 bg-white/[.025] p-12 text-center"><i class="bi bi-search text-3xl text-zinc-500"></i><h2 class="text-xl font-semibold mt-4">Nenhum periférico encontrado</h2><p class="text-zinc-400 mt-2">Tente novamente mais tarde.</p></div>
+    {% endif %}
+</main>
 {% endblock %}

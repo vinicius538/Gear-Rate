@@ -1,112 +1,20 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Comparar - GR
-{% endblock %}
-
+{% block title %}Comparar — Gear Rate{% endblock %}
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-[#0A0A0F] via-[#101018] to-[#141420] text-white">
-
-    <div class="max-w-6xl mx-auto px-12 py-12">
-
-        <div class="flex items-center gap-4 mb-12">
-
-            <span class="text-zinc-300">
-                Category
-            </span>
-
-            <select class="bg-[#17172A] px-6 py-3 rounded-full outline-none cursor-pointer">
-                <option>Mouse</option>
-                <option>Teclado</option>
-                <option>Headset</option>
-                <option>Microfone</option>
-            </select>
-
-        </div>
-
-        <div class="grid grid-cols-[1fr_auto_1fr] gap-10 items-start">
-
-            <div>
-
-                <input
-                    type="text"
-                    value="Shark X11"
-                    class="w-full bg-white text-black rounded-md text-center py-1 mb-4"
-                >
-
-                <div class="bg-[#151528] rounded-3xl p-10 shadow-xl">
-
-                    <div class="space-y-6 text-zinc-300">
-
-                        <p>Weight: 83g ±3g</p>
-
-                        <p>Battery: 300H</p>
-
-                        <p>Durability: 20.000.000 clicks</p>
-
-                        <p>DPI: 800-22000</p>
-
-                        <p>Move Speed: 400IPS</p>
-
-                        <p>Connection: Wire/2.4G/BT5.2</p>
-
-                        <p>Size: 128×64×40mm</p>
-
-                        <p>Polling rate: 125-1000Hz</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="flex justify-center pt-2">
-
-                <button
-                    class="text-zinc-400 hover:text-purple-400 transition"
-                >
-                    <i class="bi bi-arrow-left-right text-xl"></i>
-                </button>
-
-            </div>
-
-            <div>
-
-                <input
-                    type="text"
-                    value="Shark X6"
-                    class="w-full bg-white text-black rounded-md text-center py-1 mb-4"
-                >
-
-                <div class="bg-[#151528] rounded-3xl p-10 shadow-xl">
-
-                    <div class="space-y-6 text-zinc-300">
-
-                        <p>Weight: 49g ±3g</p>
-
-                        <p>Battery: 200H</p>
-
-                        <p>Durability: 80.000.000 clicks</p>
-
-                        <p>DPI: 800-26000</p>
-
-                        <p>Move Speed: 650IPS</p>
-
-                        <p>Connection: Wire/2.4G/BT5.2</p>
-
-                        <p>Size: 118.3×62×37.3mm</p>
-
-                        <p>Polling rate: 125-1000Hz</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+<main class="page-shell">
+    <div class="mb-8"><p class="eyebrow">Escolha com clareza</p><h1 class="page-title">Compare produtos</h1><p class="page-lede">Coloque os detalhes lado a lado e veja qual periférico atende melhor ao seu uso.</p></div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-7 rounded-2xl border border-white/10 bg-white/[.025] p-4">
+        <label for="category" class="text-sm text-zinc-300">Categoria</label><select id="category" class="field sm:max-w-xs"><option>Mouse</option><option>Teclado</option><option>Headset</option><option>Microfone</option></select>
     </div>
-
-</div>
+    <div class="grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-5 items-stretch">
+        {% for name,weight,battery,durability,dpi,speed,connection,size,polling in [('Shark X11','83 g ±3 g','300 h','20 milhões de cliques','800–22.000','400 IPS','Com fio / 2.4G / BT 5.2','128 × 64 × 40 mm','125–1.000 Hz'),('Shark X6','49 g ±3 g','200 h','80 milhões de cliques','800–26.000','650 IPS','Com fio / 2.4G / BT 5.2','118,3 × 62 × 37,3 mm','125–1.000 Hz')] %}
+        {% if loop.index == 2 %}<div class="hidden md:flex items-center justify-center"><span class="rounded-full border border-white/10 bg-[#171821] p-3 text-zinc-400"><i class="bi bi-arrow-left-right"></i></span></div>{% endif %}
+        <section class="rounded-2xl border border-white/10 bg-gradient-to-b from-[#181923] to-[#11121a] p-5 sm:p-7">
+            <p class="eyebrow">Opção {{ loop.index }}</p><input class="field mt-3 mb-6 text-lg font-semibold" type="text" value="{{ name }}" aria-label="Nome do produto {{ loop.index }}">
+            {% set specs = [('Peso',weight),('Bateria',battery),('Durabilidade',durability),('DPI',dpi),('Velocidade',speed),('Conexão',connection),('Dimensões',size),('Polling rate',polling)] %}
+            <dl class="divide-y divide-white/[.07]">{% for label,value in specs %}<div class="flex justify-between gap-4 py-3 text-sm"><dt class="text-zinc-400">{{ label }}</dt><dd class="text-right font-medium">{{ value }}</dd></div>{% endfor %}</dl>
+        </section>
+        {% endfor %}
+    </div>
+</main>
 {% endblock %}

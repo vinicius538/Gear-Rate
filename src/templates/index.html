@@ -1,155 +1,34 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Home-GR
-{% endblock %}
-
+{% block title %}Gear Rate — escolha melhor{% endblock %}
 {% block content %}
-<section class="max-w-6xl mx-auto px-8 py-16">
-
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-
-        <img
-            src="{{ url_for('static', filename='img/setup.jpg') }}"
-            class="rounded-lg shadow-2xl"
-        >
-
-        <div>
-            <h1 class="text-5xl font-bold text-white">
-                Encontre seu periférico ideal
-            </h1>
-
-            <p class="text-zinc-400 mt-6 text-lg">
-                Encontre o periférico ideal através de
-                reviews reais, comparações detalhadas
-                e rankings atualizados.
-            </p>
-
-            <div class="flex gap-4 mt-8">
-                <a
-                    href="/perifericos"
-                    class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl"
-                >
-                    Explore
-                </a>
-
-                <a
-                    href="/comparacao"
-                    class="bg-white text-black px-6 py-3 rounded-xl"
-                >
-                    Compare
-                </a>
+<main>
+    <section class="page-shell" style="padding-top:34px;padding-bottom:34px">
+        <div class="relative isolate overflow-hidden rounded-[30px] border border-violet-200/10 bg-[#120f19] px-7 py-10 md:px-12 md:py-14">
+            <img src="{{ url_for('static', filename='img/setup.jpg') }}" alt="Setup gamer com periféricos" class="absolute inset-0 z-0 h-full w-full object-cover opacity-35">
+            <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#0b0911] via-[#100c18]/95 to-[#100c18]/35"></div>
+            <div class="relative z-10 max-w-2xl py-4 md:py-10">
+                <p class="eyebrow"><i class="bi bi-stars mr-2"></i>Seu setup começa com a escolha certa</p>
+                <h1 class="page-title mt-5" style="font-size:clamp(42px,7vw,76px)">Equipamento certo.<br><span style="color:var(--accent-bright)">Experiência melhor.</span></h1>
+                <p class="page-lede mt-5">Descubra periféricos, veja avaliações reais e compare cada detalhe antes de escolher o próximo upgrade.</p>
+                <div class="flex flex-wrap gap-3 mt-8"><a href="/perifericos" class="btn-primary">Explorar catálogo <i class="bi bi-arrow-up-right"></i></a><a href="/comparacao" class="btn-secondary"><i class="bi bi-arrow-left-right"></i> Comparar produtos</a></div>
+            </div>
+            <div class="relative z-10 mt-12 grid sm:grid-cols-3 gap-3">
+                <a href="/perifericos" class="rounded-2xl border border-white/10 bg-black/35 p-4 backdrop-blur transition hover:bg-violet-950/40"><i class="bi bi-grid-3x3-gap text-xl" style="color:var(--accent-bright)"></i><strong class="block mt-3">Explore periféricos</strong><span class="text-sm text-zinc-400">Descubra seu próximo gear</span></a>
+                <a href="/comparacao" class="rounded-2xl border border-white/10 bg-black/35 p-4 backdrop-blur transition hover:bg-violet-950/40"><i class="bi bi-arrow-left-right text-xl" style="color:var(--accent-bright)"></i><strong class="block mt-3">Compare opções</strong><span class="text-sm text-zinc-400">Veja as especificações lado a lado</span></a>
+                <a href="/ranking" class="rounded-2xl border border-white/10 bg-black/35 p-4 backdrop-blur transition hover:bg-violet-950/40"><i class="bi bi-trophy text-xl" style="color:var(--accent-bright)"></i><strong class="block mt-3">Confira o ranking</strong><span class="text-sm text-zinc-400">Veja os mais bem avaliados</span></a>
             </div>
         </div>
-
-    </div>
-
-</section>
-<section class="max-w-6xl mx-auto px-8 pb-20">
-
-    <h2 class="text-white text-3xl font-bold mb-8">
-        Popular
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <a href="">
-        <div class="bg-[#11111A] rounded-xl p-4 shadow-lg border border-zinc-800">
-
-            <img
-                src="{{ url_for('static', filename='img/headset.webp') }}"
-                class="w-full h-48 object-contain bg-white rounded-lg"
-            >
-
-            <h3 class="text-white text-center mt-4">
-                Headset HyperX Cloud II
-            </h3>
-
-            <div class="flex justify-between mt-4">
-                <span class="text-purple-400">
-                    ★★★★★
-                </span>
-
-                <span class="text-purple-400">
-                    8.36/10
-                </span>
-            </div>
-
+    </section>
+    <section class="page-shell" style="padding-top:18px">
+        <div class="flex items-end justify-between mb-6"><div><p class="eyebrow">Escolhas da comunidade</p><h2 class="section-heading mt-2">Produtos em destaque</h2></div><a href="/perifericos" class="text-sm text-zinc-300 hover:text-white">Ver catálogo <i class="bi bi-arrow-right ml-1"></i></a></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {% for item in range(4) %}
+            <a href="/perifericos" class="product-card">
+                <img src="{{ url_for('static', filename='img/headset.webp') }}" alt="Headset HyperX Cloud II" class="w-full h-48 object-contain p-3">
+                <div class="pt-3"><p class="text-xs uppercase tracking-wider text-zinc-500">Headset</p><h3 class="font-semibold mt-1">HyperX Cloud II</h3><div class="flex justify-between items-center mt-4"><span class="rating">★★★★★</span><span class="text-sm font-semibold">8.36 <span class="text-zinc-500 font-normal">/ 10</span></span></div></div>
+            </a>
+            {% endfor %}
         </div>
-        </a>
-        <a href="">
-        <div class="bg-[#11111A] rounded-xl p-4 shadow-lg border border-zinc-800">
-
-            <img
-                src="{{ url_for('static', filename='img/headset.webp') }}"
-                class="w-full h-48 object-contain bg-white rounded-lg"
-            >
-
-            <h3 class="text-white text-center mt-4">
-                Headset HyperX Cloud II
-            </h3>
-
-            <div class="flex justify-between mt-4">
-                <span class="text-purple-400">
-                    ★★★★★
-                </span>
-
-                <span class="text-purple-400">
-                    8.36/10
-                </span>
-            </div>
-
-        </div>
-        </a>
-        <a href="">
-        <div class="bg-[#11111A] rounded-xl p-4 shadow-lg border border-zinc-800">
-
-            <img
-                src="{{ url_for('static', filename='img/headset.webp') }}"
-                class="w-full h-48 object-contain bg-white rounded-lg"
-            >
-
-            <h3 class="text-white text-center mt-4">
-                Headset HyperX Cloud II
-            </h3>
-
-            <div class="flex justify-between mt-4">
-                <span class="text-purple-400">
-                    ★★★★★
-                </span>
-
-                <span class="text-purple-400">
-                    8.36/10
-                </span>
-            </div>
-
-        </div>
-        </a>
-        <a href="">
-        <div class="bg-[#11111A] rounded-xl p-4 shadow-lg border border-zinc-800">
-
-            <img
-                src="{{ url_for('static', filename='img/headset.webp') }}"
-                class="w-full h-48 object-contain bg-white rounded-lg"
-            >
-
-            <h3 class="text-white text-center mt-4">
-                Headset HyperX Cloud II
-            </h3>
-
-            <div class="flex justify-between mt-4">
-                <span class="text-purple-400">
-                    ★★★★★
-                </span>
-
-                <span class="text-purple-400">
-                    8.36/10
-                </span>
-            </div>
-
-        </div>
-        </a>
-    </div>
-    
-
-</section>
+    </section>
+</main>
 {% endblock %}

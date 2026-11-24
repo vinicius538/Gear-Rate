@@ -9,14 +9,16 @@ services:
       - "5000:5000"
 
     environment:
-      - DB_HOST=db
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
-      - SECRET_KEY=${SECRET_KEY}
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      SECRET_KEY: ${SECRET_KEY}
 
     depends_on:
-      - db
+      db-init:
+        condition: service_completed_successfully
 
     volumes:
       - .:/app
@@ -27,12 +29,38 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
     ports:
       - "3307:3306"
 
     volumes:
       - mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  db-init:
+    image: mariadb:11
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    volumes:
+      - ./script.sql:/schema.sql:ro
+    entrypoint: ["sh", "-c"]
+    command:
+      - >-
+        mariadb --protocol=tcp --host=db --port=3306 --user="$$MYSQL_USER"
+        --password="$$MYSQL_PASSWORD" "$$MYSQL_DATABASE" < /schema.sql
+    restart: "no"
 
 volumes:
   mysql_data:

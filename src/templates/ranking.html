@@ -1,65 +1,31 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Home-GR
-{% endblock %}
-
+{% block title %}Ranking — Gear Rate{% endblock %}
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-[#0A0A0F] via-[#101018] to-[#141420] text-white">
-
-    <div class="max-w-7xl mx-auto px-8 py-8 flex gap-12">
-
-        <aside class="w-60">
-
-            <div class="mb-6">
-                <p class="mb-2 text-zinc-300">Category</p>
-
-                <select class="w-full bg-[#151528] rounded-full px-5 py-3 outline-none">
-                    <option selected>Headset</option>
-                    <option value="">Mouse</option>
-                    <option value="">Teclado</option>
-                    <option value="">Microfone</option>
-                </select>
-            </div>
-
-            <div>
-                <p class="mb-2 text-zinc-300">Order by</p>
-
-                <select class="w-full bg-[#151528] rounded-full px-5 py-3 outline-none">
-                    <option selected>Nota</option>
-                    <option>Preço</option>
-                </select>
-            </div>
-
+<main class="page-shell">
+    <div class="mb-9"><p class="eyebrow">A opinião da comunidade</p><h1 class="page-title">Ranking de periféricos</h1><p class="page-lede">Confira os produtos mais bem avaliados e descubra o que vale entrar no seu setup.</p></div>
+    <div class="grid lg:grid-cols-[240px_1fr] gap-8 items-start">
+        <aside class="rounded-2xl border border-white/10 bg-white/[.025] p-5">
+            <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Refinar ranking</p>
+            <label class="block text-sm text-zinc-300 mb-2" for="category">Categoria</label><select id="category" class="field mb-5"><option>Headset</option><option>Mouse</option><option>Teclado</option><option>Microfone</option></select>
+            <label class="block text-sm text-zinc-300 mb-2" for="order">Ordenar por</label><select id="order" class="field"><option>Melhor nota</option><option>Preço</option></select>
         </aside>
-
-        <div class="flex-1 space-y-4">
-
+        <div class="space-y-3">
             {% for produto in produtos %}
-            <div class="bg-gradient-to-r from-[#101020] to-[#18183A] rounded-2xl p-4 flex items-center gap-6">
-
-                <span class="text-2xl font-bold w-12 text-center">
-                    {{ loop.index }}
-                </span>
-
-                <img
-                    src="{{ produto['per_imagem'] }}"
-                    class="w-20 h-20 bg-white rounded-lg object-contain"
-                    alt="HyperX Cloud II"
-                >
-
-                <h3 class="flex-1 text-lg">
-                    {{ produto['per_nome'] }}
-                </h3>
-
-                <div class="text-right">
-                    <p class="text-purple-500">★★★★★</p>
-                    <p class="text-purple-400">{{ produto['rev_rate'] }}</p>
-                </div>
-
-            </div>
+            <article class="flex items-center gap-4 sm:gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-[#171821] to-[#11121a] p-4 sm:p-5 transition hover:border-white/20">
+                <span class="w-9 text-center text-xl font-bold" style="color:{{ 'var(--accent-bright)' if loop.index == 1 else '#777887' }}">{{ '%02d'|format(loop.index) }}</span>
+                {% if produto['per_imagem'] %}
+                <img src="{{ produto['per_imagem'] }}" alt="{{ produto['per_nome'] }}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-white object-contain p-2">
+                {% else %}
+                {% set category_icon = 'bi-headset' if produto['per_categoria'] == 'Headset' else 'bi-mouse' if produto['per_categoria'] == 'Mouse' else 'bi-keyboard' if produto['per_categoria'] == 'Teclado' else 'bi-mic' %}
+                <span class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl grid place-items-center bg-violet-950/50 text-violet-300"><i class="bi {{ category_icon }} text-3xl"></i></span>
+                {% endif %}
+                <div class="flex-1 min-w-0"><p class="text-xs text-zinc-500">{{ produto['per_marca'] or 'Periférico' }} · {{ produto['per_categoria'] }}</p><h2 class="font-semibold truncate mt-1">{{ produto['per_nome'] }}</h2><p class="text-xs text-zinc-500 mt-1">{{ 'Avaliação da comunidade' if produto['rev_rate'] is not none else 'Ainda sem avaliações' }}</p></div>
+                <div class="text-right shrink-0"><p class="{{ 'rating' if produto['rev_rate'] is not none else 'text-zinc-700' }} text-sm">★★★★★</p>{% if produto['rev_rate'] is not none %}<p class="font-bold mt-1">{{ produto['rev_rate'] }} <span class="text-xs font-normal text-zinc-500">/ 10</span></p>{% else %}<p class="text-xs text-zinc-500 mt-1">Sem nota</p>{% endif %}</div>
+            </article>
+            {% else %}
+            <div class="rounded-2xl border border-white/10 p-12 text-center text-zinc-400">Ainda não há produtos avaliados.</div>
             {% endfor %}
         </div>
     </div>
-</div>
+</main>
 {% endblock %}

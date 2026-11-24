@@ -16,10 +16,12 @@ def perifericos():
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     cursor.execute("""
-    select p.per_nome,p.per_marca,p.per_imagem,r.rev_rate
-    from peripherals p
-    left join reviews r
-    on p.per_id = r.per_id
+    SELECT p.per_nome, p.per_marca, p.per_categoria, p.per_imagem,
+           ROUND(AVG(r.rev_rate), 2) AS rev_rate
+    FROM peripherals p
+    LEFT JOIN reviews r ON p.per_id = r.per_id
+    GROUP BY p.per_id, p.per_nome, p.per_marca, p.per_categoria, p.per_imagem
+    ORDER BY p.per_nome
     """)
     
     produtos=cursor.fetchall()
@@ -102,10 +104,12 @@ def ranking():
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     cursor.execute("""
-    select p.per_nome,p.per_marca,p.per_imagem,r.rev_rate
-    from peripherals p
-    left join reviews r
-    on p.per_id = r.per_id
+    SELECT p.per_nome, p.per_marca, p.per_categoria, p.per_imagem,
+           ROUND(AVG(r.rev_rate), 2) AS rev_rate
+    FROM peripherals p
+    LEFT JOIN reviews r ON p.per_id = r.per_id
+    GROUP BY p.per_id, p.per_nome, p.per_marca, p.per_categoria, p.per_imagem
+    ORDER BY AVG(r.rev_rate) DESC, p.per_nome
     """)
     
     produtos=cursor.fetchall()

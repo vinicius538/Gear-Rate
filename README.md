@@ -49,8 +49,14 @@ git clone https://github.com/vinicius538/Gear-Rate.git
 
 cd Gear-Rate
 
+cp .env.example .env
+
+# Edite .env e troque DB_PASSWORD e SECRET_KEY por valores seus.
+
 docker compose up --build
 ```
+
+O serviço `db-init` cria as tabelas no banco configurado, inclusive quando o volume do MariaDB já existe. A importação é idempotente e não apaga os dados existentes.
 ---
 
 ##  💻 Telas
